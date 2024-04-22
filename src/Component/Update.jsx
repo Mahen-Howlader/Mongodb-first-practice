@@ -8,7 +8,7 @@ function Update() {
     const email = e.target.email.value;
     const updateUser = { name, email };
     console.log(updateUser);
-    fetch(`http://localhost:5000/users/${useloader._id}`, {
+    fetch(`http://localhost:3000/users/${useloader._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -16,7 +16,12 @@ function Update() {
         body: JSON.stringify(updateUser)
     })
       .then((user) => user.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data)
+        if(data.modifiedCount){
+            alert("Success update")
+        }
+    });
   }
   return (
     <div>
